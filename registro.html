@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="imagenes/icono app2.jpg" type="image/x-icon">
+    <title>GURU</title>
+</head>
+
+<body style="background-color: #ffffff;">
+    <style>
+        /* Quitar spinner en Chrome, Safari y Edge */
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Quitar spinner en Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        
+    </style>
+
+    <header>
+        <div class="banner-content">
+            <div class="logo">
+                <img src="imagenes/logotipo.png" alt="Logo">
+            </div>
+        </div>
+
+        <nav class="navegacion-principal contenedor">
+            <a href="index.html">PRODUCTO</a>
+            <a href="sesion.html">INICIAR SESIÓN</a>
+        </nav>
+    </header>
+
+    <div class="left-column">
+        <div class="agenda">
+            <h1>Formulario de Registro</h1>
+            <form action="conexion.php" method="POST" enctype="multipart/form-data">
+
+                <label for="identificacion">Identificación:</label>
+        <input type="text" id="identificacion" name="identificacion" maxlength="10" required>
+
+
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" name="nombres" required>
+
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" required>
+
+                <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+
+                <label for="telefono">Número de Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required>
+
+                <label for="genero">Género:</label>
+                <select id="genero" name="genero" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                    <option value="Otro">Otro</option>
+                </select>
+
+                <label for="rol">Selecciona tu rol:</label>
+                <select id="rol" name="rol" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Usuario</option>
+                    <option value="3">Vendedor</option>
+                </select>
+
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" required>
+
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+                
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById("identificacion").addEventListener("input", function () {
+                this.value = this.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea número
+            });
+        </script>
+
+        <footer>
+            <p>&copy; 2024 Guru Sales</p>
+        </footer>
+    </div>
+</body>
+</html>

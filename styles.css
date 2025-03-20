@@ -1,0 +1,263 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Cambié a 0 para evitar problemas de margen */
+    padding: 0;
+    background-color: #fffafa; /* Color de fondo */
+}
+
+header {
+    background-color: #ddd590;
+    color: rgb(255, 255, 255);
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.navegacion-principal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} 
+
+
+
+.navegacion-principal a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 50px; /* Cambié a 50px para un espaciado más balanceado */
+}
+
+nav li:not(:last-child):after {
+    content: ''; 
+    margin-left: 20px; 
+    color: rgb(66, 66, 66); 
+}
+
+a {
+    text-decoration: none;
+    color: rgb(2, 2, 2);
+}
+
+main {
+    padding: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 100px; /* Tamaño máximo de la imagen */
+    margin-right: 0; 
+}
+
+form {
+    
+    margin: 0 auto;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+button {
+    background-color: #ddd590;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #92b839;
+}
+
+.agenda {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(180, 5, 5, 0.1);
+}
+
+footer {
+    background-color: #ddd590;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+table {
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho */
+}
+
+td {
+    padding: 10px;
+    width: 230px;
+    text-align: center; /* Centra el contenido */
+}
+
+.imagen-uniforme {
+    width: 150px;
+    height: 150px;
+    display: block; /* Para centrar la imagen */
+    margin: 0 auto; /* Centra la imagen */
+}
+
+/* Estilos para pantallas mayores a 768px */
+@media (min-width: 768px) {
+    .navegacion-principal {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .productos img.imagen-uniforme {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    td {
+        text-align: center;
+        padding: 15px;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 768px) {
+    .navegacion-principal {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    /* Mostrar las imágenes en dos columnas */
+    
+
+    td {
+        width: 50%; /* Cada imagen ocupará el 45% del ancho del contenedor */
+        margin-bottom: 20px;
+    }
+
+    .productos img.imagen-uniforme {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+/* Estilos para pantallas menores a 400px */
+@media (max-width: 400px) {
+    .navegacion-principal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Mostrar las imágenes una debajo de la otra */
+    table, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    td {
+        margin-bottom: 20px;
+    }
+
+    .productos img.imagen-uniforme {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+
+    
+    header {
+        background-color: #ddd590;
+        color: rgb(255, 255, 255);
+        padding: 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+.img-wha {
+    width: 50px;
+    height: 50px;
+}
+
+.cuentas img {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    margin-bottom: 10px; 
+}
+
+.cuentas {
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%; 
+    margin: 0 auto; 
+}
+
+h2, h3, p {
+    color: #000000; /* Color de texto */
+}
+
+.imagen-contacto,
+.imagen-cesar,
+.imagen-santiago,
+.imagen-jose {
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%; 
+    position: relative; 
+    margin: 0 auto; 
+}
+
+.contacto,
+.contacto-cesar,
+.contacto-santiago,
+.contacto-jose {
+    font-size: 16px; 
+    font-weight: bold; 
+    text-align: center; 
+    position: relative; 
+    top: -20px; 
+}
+
+.button1 {
+    text-align: center;
+}
+
+form.boton2 {
+    display: flex;
+    flex-direction: row;
+    margin-block: 10px;
+}
+
