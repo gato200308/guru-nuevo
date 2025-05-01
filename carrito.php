@@ -180,6 +180,7 @@ if ($conexion->connect_error) {
                             <i class="fas fa-trash-alt fa-lg"></i>
                         </a>
                     </td>
+                    
                 </tr>
                 <?php
                     endif;

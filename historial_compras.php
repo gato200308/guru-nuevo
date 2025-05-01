@@ -7,25 +7,22 @@ if (!isset($_SESSION['identificacion'])) {
 }
 // Conectar a la base de datos
 $conexion = new mysqli('localhost', 'root', '', 'guru');
-
 // Verificar la conexión
 if ($conexion->connect_error) {
     die("Conexión fallida: " . $conexion->connect_error);
 }
 
-
-
-
-// Obtener el historial de compras
-$sql = "SELECT * FROM historial_compras ORDER BY fecha DESC";
+// Obtener el historial de compras del usuario logueado
+$usuario_id = $conexion->real_escape_string($_SESSION['identificacion']);
+$sql = "SELECT * FROM historial_compras WHERE identificacion_id = '$usuario_id' ORDER BY fecha DESC";
 $resultado = $conexion->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Historial de Compras</title>
     <style>
         body {
@@ -74,6 +71,7 @@ $resultado = $conexion->query($sql);
         }
         .button:hover {
             background-color: #94cf70;
+            color: #000;
         }
     </style>
 </head>
@@ -81,7 +79,7 @@ $resultado = $conexion->query($sql);
     <div class="container">
         <h1>Historial de Compras</h1>
         
-        <?php if ($resultado->num_rows > 0): ?>
+        <?php if ($resultado && $resultado->num_rows > 0): ?>
             <table>
                 <tr>
                     <th>Fecha</th>
@@ -94,7 +92,7 @@ $resultado = $conexion->query($sql);
                         <td>
                             <?php 
                             $productos = json_decode($row['productos'], true);
-                            echo implode(', ', $productos);
+                            echo htmlspecialchars(implode(', ', $productos));
                             ?>
                         </td>
                         <td>$<?php echo number_format($row['total'], 2); ?></td>
@@ -106,6 +104,9 @@ $resultado = $conexion->query($sql);
         <?php endif; ?>
         
         <a href="index.php" class="button">Volver al Inicio</a>
+        <a href="vaciar_historial.php" class="button">
+            <i class="fas fa-trash-alt"></i> Vaciar Historial
+        </a>
     </div>
 </body>
 </html>
