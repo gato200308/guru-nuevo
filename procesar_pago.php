@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -13,9 +12,11 @@ if ($conexion->connect_error) {
 // Crear tabla de historial si no existe
 $sql = "CREATE TABLE IF NOT EXISTS historial_compras (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    identificacion_id VARCHAR(20),
     fecha DATETIME,
     total DECIMAL(10,2),
-    productos TEXT
+    productos TEXT,
+    FOREIGN KEY (identificacion_id) REFERENCES usuario(identificacion)
 )";
 $conexion->query($sql);
 
@@ -39,10 +40,11 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
     // Guardar la compra en el historial
     $productosJson = json_encode($listaProductos);
     $fecha = date('Y-m-d H:i:s');
-    $sql = "INSERT INTO historial_compras (fecha, total, productos) VALUES (?, ?, ?)";
+    $identificacion = $_SESSION['identificacion'];
+    $sql = "INSERT INTO historial_compras (identificacion_id, fecha, total, productos) VALUES (?, ?, ?, ?)";
     
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("sds", $fecha, $totalCarrito, $productosJson);
+    $stmt->bind_param("ssds", $identificacion, $fecha, $totalCarrito, $productosJson);
     $stmt->execute();
     
     // Limpiar el carrito

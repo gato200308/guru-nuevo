@@ -21,9 +21,11 @@ CREATE TABLE usuario (
 
 CREATE TABLE  historial_compras (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    identificacion_id VARCHAR(20),
     fecha DATETIME,
     total DECIMAL(10,2),
-    productos TEXT
+    productos TEXT,
+    FOREIGN KEY (identificacion_id) REFERENCES usuario(identificacion)
 );
 
 CREATE TABLE  productos (
@@ -36,5 +38,3 @@ CREATE TABLE  productos (
     FOREIGN KEY (vendedor_id) REFERENCES usuario(identificacion)
 );
 INSERT INTO Roles (id, nombre) VALUES (1, 'Admin'), (2, 'Usuario'), (3, 'Vendedor');
-INSERT INTO usuario (identificacion, nombres, apellidos, fecha_nacimiento, telefono, genero, rol, correo, contrasena) VALUES
-'1234567890', 'Juan', 'Pérez', '1990-01-01', '123456789', 'M', 1, '
