@@ -136,6 +136,67 @@ if ($conexion->connect_error) {
         .delete-btn:hover {
             color: #cc0000;
         }
+
+        .cantidad-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .cantidad-btn {
+            background-color: #a38746;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .cantidad-btn:hover {
+            background-color: #8a6d3b;
+        }
+        
+        .cantidad-input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .cantidad-input:focus {
+            outline: none;
+            border-color: #a38746;
+        }
+        
+        .subtotal {
+            font-weight: bold;
+            color: #a38746;
+        }
+        
+        .actualizar-btn {
+            background-color: #a38746;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .actualizar-btn:hover {
+            background-color: #8a6d3b;
+        }
     </style>
 </head>
 <body>
@@ -162,25 +223,32 @@ if ($conexion->connect_error) {
                 $totalCarrito = 0;
                 foreach ($_SESSION['carrito'] as $key => $item):
                     $nombre_producto = $item['producto'];
+                    $cantidad = isset($item['cantidad']) ? $item['cantidad'] : 1;
                     $query = "SELECT nombre, precio, imagen_url FROM productos WHERE nombre = '$nombre_producto'";
                     $result = $conexion->query($query);
                     if ($result->num_rows > 0):
                         $producto = $result->fetch_assoc();
-                        $subtotal = $producto['precio'];
+                        $subtotal = $producto['precio'] * $cantidad;
                         $totalCarrito += $subtotal;
                 ?>
                 <tr>
                     <td><?php echo $producto['nombre']; ?></td>
                     <td>$<?php echo number_format($producto['precio'], 2); ?></td>
-                    <td>1</td>
-                    <td>$<?php echo number_format($subtotal, 2); ?></td>
+                    <td>
+                        <div class="cantidad-control">
+                            <button class="cantidad-btn" onclick="actualizarCantidad(<?php echo $key; ?>, 'decrementar')">-</button>
+                            <input type="number" class="cantidad-input" value="<?php echo $cantidad; ?>" 
+                                   min="1" max="99" onchange="actualizarCantidad(<?php echo $key; ?>, 'cambiar', this.value)">
+                            <button class="cantidad-btn" onclick="actualizarCantidad(<?php echo $key; ?>, 'incrementar')">+</button>
+                        </div>
+                    </td>
+                    <td class="subtotal">$<?php echo number_format($subtotal, 2); ?></td>
                     <td><img src="<?php echo $producto['imagen_url']; ?>" alt="<?php echo $producto['nombre']; ?>" class="imagen-producto"></td>
                     <td>
                         <a href="eliminar_producto_carri.php?producto=<?php echo urlencode($nombre_producto); ?>" class="delete-btn">
                             <i class="fas fa-trash-alt fa-lg"></i>
                         </a>
                     </td>
-                    
                 </tr>
                 <?php
                     endif;
@@ -188,16 +256,16 @@ if ($conexion->connect_error) {
                 ?>
                 <tr class="total-row">
                     <td colspan="3">Total:</td>
-                    <td colspan="3">$<?php echo number_format($totalCarrito, 2); ?></td>
+                    <td colspan="3" id="total-carrito">$<?php echo number_format($totalCarrito, 2); ?></td>
                 </tr>
             </table>
             <div class="action-buttons">
-            <?php
-                    if (isset($_SESSION['identificacion'])) {
-                        $url_pago = "procesar_pago.php";
-                    } else {
-                        $url_pago = "sesion.html";
-                    }
+                <?php
+                if (isset($_SESSION['identificacion'])) {
+                    $url_pago = "procesar_pago.php";
+                } else {
+                    $url_pago = "sesion.html";
+                }
                 ?>
                 <a href="<?= $url_pago ?>" class="btn"><i class="fas fa-credit-card"></i> Proceder al Pago</a>
                 <a href="eliminar-carrito.php" class="btn"><i class="fas fa-trash"></i>Vaciar Carrito</a>
@@ -205,6 +273,43 @@ if ($conexion->connect_error) {
             </div>
         <?php endif; ?>
     </div>
+
+    <script>
+    function actualizarCantidad(index, accion, valor = null) {
+        let input = document.querySelector(`input[onchange*="${index}"]`);
+        let cantidad = parseInt(input.value);
+        
+        if (accion === 'incrementar') {
+            cantidad = Math.min(cantidad + 1, 99);
+        } else if (accion === 'decrementar') {
+            cantidad = Math.max(cantidad - 1, 1);
+        } else if (accion === 'cambiar') {
+            cantidad = Math.min(Math.max(parseInt(valor) || 1, 1), 99);
+        }
+        
+        input.value = cantidad;
+        
+        // Enviar la actualización al servidor
+        fetch('actualizar_cantidad.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `index=${index}&cantidad=${cantidad}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Actualizar los subtotales y el total
+            document.querySelectorAll('.subtotal').forEach((element, i) => {
+                if (i === index) {
+                    element.textContent = '$' + data.subtotales[i].toFixed(2);
+                }
+            });
+            document.getElementById('total-carrito').textContent = '$' + data.total.toFixed(2);
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    </script>
 </body>
 </html>
 <?php $conexion->close(); ?>

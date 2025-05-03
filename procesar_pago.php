@@ -27,13 +27,16 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
     
     foreach ($_SESSION['carrito'] as $item) {
         $nombre_producto = $item['producto'];
+        $cantidad = isset($item['cantidad']) ? $item['cantidad'] : 1;
         $query = "SELECT precio FROM productos WHERE nombre = '$nombre_producto'";
         $result = $conexion->query($query);
         
         if ($result->num_rows > 0) {
             $producto = $result->fetch_assoc();
-            $totalCarrito += $producto['precio'];
-            $listaProductos[] = $nombre_producto;
+            $subtotal = $producto['precio'] * $cantidad;
+            $totalCarrito += $subtotal;
+            // Agregar la cantidad al nombre del producto
+            $listaProductos[] = $nombre_producto . " (x" . $cantidad . ")";
         }
     }
     

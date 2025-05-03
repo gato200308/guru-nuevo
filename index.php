@@ -10,9 +10,14 @@ if (!isset($_SESSION['carrito'])) {
 if (isset($_POST['add_to_cart'])) {
     $producto = $_POST['producto'];
     $precio = $_POST['precio'];
+    $cantidad = isset($_POST['cantidad']) ? intval($_POST['cantidad']) : 1;
 
-    // Agregar el producto al carrito
-    $_SESSION['carrito'][] = ['producto' => $producto, 'precio' => $precio];
+    // Agregar el producto al carrito con su cantidad
+    $_SESSION['carrito'][] = [
+        'producto' => $producto, 
+        'precio' => $precio,
+        'cantidad' => $cantidad
+    ];
 }
 // Conexión a la base de datos
 $conexion = new mysqli('localhost', 'root', '', 'guru');
