@@ -171,7 +171,7 @@ if (!$resultado) {
             <a href="index.php" class="button">
                 <i class="fas fa-home"></i> Volver al Inicio
             </a>
-            <a href="vaciar_historial.php" class="button" onclick="return confirm('¿Estás seguro de que deseas vaciar tu historial de compras?');">
+            <a href="vaciar_historial.php" class="button">
                 <i class="fas fa-trash-alt"></i> Vaciar Historial
             </a>
         </div>
