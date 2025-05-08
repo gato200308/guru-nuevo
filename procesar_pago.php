@@ -2,7 +2,7 @@
 session_start();
 
 // Conectar a la base de datos
-$conexion = new mysqli('localhost', 'root', '', 'guru');
+$conexion = new mysqli('sql112.infinityfree.com', 'if0_38935589', 'gatop2003gemma1', 'if0_38935589_guru_db');
 
 // Verificar la conexión
 if ($conexion->connect_error) {

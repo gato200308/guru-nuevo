@@ -20,7 +20,8 @@ if (isset($_POST['add_to_cart'])) {
     ];
 }
 // Conexión a la base de datos
-$conexion = new mysqli('localhost', 'root', '', 'guru');
+$conexion = new mysqli('sql112.infinityfree.com', 'if0_38935589', 'gatop2003gemma1', database: 'if0_38935589_guru_db";
+');
 if ($conexion->connect_error) {
     die('Error de conexión: ' . $conexion->connect_error);
 }

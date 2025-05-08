@@ -3,10 +3,10 @@
 // Verifica si se han enviado datos por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Configuración de la conexión a la base de datos
-    $servername = "localhost"; // Cambiar si es necesario
-    $username = "root";
-    $password = "";
-    $dbname = "guru";
+    $servername = "sql112.infinityfree.com"; // Cambiar si es necesario
+    $username = "if0_38935589";
+    $password = "gatop2003gemma1";
+    $dbname = "if0_38935589_guru_db";
 
     // Crea una conexión a la base de datos
     $conn = new mysqli($servername, $username, $password, $dbname);

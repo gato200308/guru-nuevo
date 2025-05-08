@@ -14,10 +14,10 @@ if (!isset($_SESSION['identificacion'])) {
 }
 
 // Configuración de la conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "guru";
+$servername = "sql112.infinityfree.com";
+$username = "if0_38935589";
+$password = "gatop2003gemma1";
+$dbname = "if0_38935589_guru_db";
 
 // Crea una conexión a la base de datos
 $conn = new mysqli($servername, $username, $password, $dbname);
