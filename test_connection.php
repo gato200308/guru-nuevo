@@ -5,10 +5,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Configuración de la conexión
-$servername = "sql.freedb.tech";
-$username = "freedb_guru_db";
-$password = "BKHA8q9S$npq8cw";
-$dbname = "freedb_guru_db";
+$servername = "localhost";
+$username = "u496887931_root_guru_db";
+$password = "!LvyakFnL;9";
+$dbname = "u496887931_guru_db";
 
 // Intentar la conexión
 try {

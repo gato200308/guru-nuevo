@@ -2,7 +2,7 @@
 header('Content-Type: application/json'); // Establecer el tipo de contenido a JSON
 
 // Conectar a la base de datos
-$conn = new mysqli('sql.freedb.tech', 'freedb_guru_db', 'BKHA8q9S$npq8cw', 'freedb_guru_db');
+$conn = new mysqli('localhost', 'u496887931_root_guru_db', '!LvyakFnL;9', 'u496887931_guru_db');
 
 // Comprobar la conexión
 if ($conn->connect_error) {

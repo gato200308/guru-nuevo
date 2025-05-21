@@ -27,7 +27,7 @@ if (isset($_POST['add_to_cart'])) {
     ];
 }
 // Conexión a la base de datos
-$conexion = new mysqli('sql.freedb.tech', 'freedb_guru_db', 'BKHA8q9S$npq8cw', 'freedb_guru_db');
+$conexion = new mysqli('localhost', 'u496887931_root_guru_db', '!LvyakFnL;9', 'u496887931_guru_db');
 if ($conexion->connect_error) {
     die('Error de conexión: ' . $conexion->connect_error);
 }

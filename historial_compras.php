@@ -7,7 +7,7 @@ if (!isset($_SESSION['identificacion'])) {
 }
 
 // Conectar a la base de datos
-$conexion = new mysqli('sql.freedb.tech', 'freedb_guru_db', 'BKHA8q9S$npq8cw', 'freedb_guru_db');
+$conexion = new mysqli('localhost', 'u496887931_root_guru_db', '!LvyakFnL;9', 'u496887931_guru_db');
 
 // Verificar la conexión
 if ($conexion->connect_error) {

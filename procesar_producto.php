@@ -10,13 +10,13 @@ if (!isset($_SESSION['identificacion'])) {
 }
 
 // Configuración de la base de datos
-$host = 'sql.freedb.tech';
-$dbname = 'freedb_guru_db';
-$username = 'freedb_guru_db';
-$password = 'BKHA8q9S$npq8cw';
+$host = 'localhost';
+$dbname = 'u496887931_guru_db';
+$username = 'u496887931_root_guru_db';
+$password = '!LvyakFnL;9';
 
 // Conexión con mysqli
-$conn = new mysqli('sql.freedb.tech', 'freedb_guru_db', 'BKHA8q9S$npq8cw', 'freedb_guru_db');
+$conn = new mysqli('localhost', 'u496887931_root_guru_db', '!LvyakFnL;9', 'u496887931_guru_db');
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
