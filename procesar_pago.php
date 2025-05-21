@@ -2,7 +2,7 @@
 session_start();
 
 // Conectar a la base de datos
-$conexion = new mysqli('sql112.infinityfree.com', 'if0_38935589', 'gatop2003gemma1', 'if0_38935589_guru_db');
+$conexion = new mysqli('sql.freedb.tech', 'freedb_guru_db', 'BKHA8q9S$npq8cw', 'freedb_guru_db');
 
 // Verificar la conexión
 if ($conexion->connect_error) {

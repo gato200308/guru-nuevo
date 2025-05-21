@@ -1,5 +1,5 @@
 <?php
-echo "Prueba simple<br>";
+
 exit;
 
 ini_set('display_errors', 1);
@@ -27,7 +27,7 @@ if (isset($_POST['add_to_cart'])) {
     ];
 }
 // Conexión a la base de datos
-$conexion = new mysqli('sql112.infinityfree.com', 'if0_38935589', 'gatop2003gemma1', 'if0_38935589_guru_db');
+$conexion = new mysqli('sql.freedb.tech', 'freedb_guru_db', 'BKHA8q9S$npq8cw', 'freedb_guru_db');
 if ($conexion->connect_error) {
     die('Error de conexión: ' . $conexion->connect_error);
 }

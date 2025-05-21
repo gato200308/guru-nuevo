@@ -10,13 +10,13 @@ if (!isset($_SESSION['identificacion'])) {
 }
 
 // Configuración de la base de datos
-$host = 'sql112.infinityfree.com';
-$dbname = 'if0_38935589_guru_db';
-$username = 'if0_38935589';
-$password = 'gatop2003gemma1';
+$host = 'sql.freedb.tech';
+$dbname = 'freedb_guru_db';
+$username = 'freedb_guru_db';
+$password = 'BKHA8q9S$npq8cw';
 
 // Conexión con mysqli
-$conn = new mysqli('sql112.infinityfree.com', 'if0_38935589', 'gatop2003gemma1', 'if0_38935589_guru_db');
+$conn = new mysqli('sql.freedb.tech', 'freedb_guru_db', 'BKHA8q9S$npq8cw', 'freedb_guru_db');
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
