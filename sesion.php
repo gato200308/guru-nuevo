@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 session_start(); // Inicia la sesión
 
 // Configuración de la conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "guru";
+$servername = "sql112.infinityfree.com";
+$username = "if0_38935589";
+$password = "gatop2003gemma1";
+$dbname = "if0_38935589_guru_db";
 
 // Crear la conexión a la base de datos
 $conn = new mysqli($servername, $username, $password, $dbname);

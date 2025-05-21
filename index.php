@@ -1,4 +1,11 @@
 <?php
+echo "Prueba simple<br>";
+exit;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start(); // Asegúrate de iniciar la sesión al principio del archivo
 
 // Si el carrito no existe en la sesión, lo creamos como un arreglo vacío
@@ -20,11 +27,11 @@ if (isset($_POST['add_to_cart'])) {
     ];
 }
 // Conexión a la base de datos
-$conexion = new mysqli('sql112.infinityfree.com', 'if0_38935589', 'gatop2003gemma1', database: 'if0_38935589_guru_db";
-');
+$conexion = new mysqli('sql112.infinityfree.com', 'if0_38935589', 'gatop2003gemma1', 'if0_38935589_guru_db');
 if ($conexion->connect_error) {
     die('Error de conexión: ' . $conexion->connect_error);
 }
+echo "Conexión exitosa<br>";
 
 // Consulta para obtener los productos
 $productos = [];

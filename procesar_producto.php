@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Iniciar sesión para verificar autenticación
 session_start();
 if (!isset($_SESSION['identificacion'])) {
@@ -7,16 +10,15 @@ if (!isset($_SESSION['identificacion'])) {
 }
 
 // Configuración de la base de datos
-$host = 'localhost';  // o la dirección de tu servidor de base de datos
-$dbname = 'guru';  // El nombre de tu base de datos
-$username = 'root';  // Tu usuario de base de datos
-$password = '';  // Tu contraseña de base de datos
+$host = 'sql112.infinityfree.com';
+$dbname = 'if0_38935589_guru_db';
+$username = 'if0_38935589';
+$password = 'gatop2003gemma1';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
+// Conexión con mysqli
+$conn = new mysqli('sql112.infinityfree.com', 'if0_38935589', 'gatop2003gemma1', 'if0_38935589_guru_db');
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
 }
 
 // Verificar si el formulario fue enviado
@@ -43,16 +45,9 @@ if (isset($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_FILES['im
         // Mover la imagen a la carpeta destino
         if (move_uploaded_file($imagen_tmp, $imagen_destino)) {
             // Preparar la consulta SQL para insertar el producto en la base de datos
-            $stmt = $pdo->prepare("INSERT INTO productos (nombre, descripcion, precio, imagen_url, vendedor_id) VALUES (:nombre, :descripcion, :precio, :imagen_url, :vendedor_id)");
-
-            // Ejecutar la consulta
-            $stmt->execute([
-                ':nombre' => $nombre,
-                ':descripcion' => $descripcion,
-                ':precio' => $precio,
-                ':imagen_url' => $imagen_destino,
-                ':vendedor_id' => $vendedor_id
-            ]);
+            $stmt = $conn->prepare("INSERT INTO productos (nombre, descripcion, precio, imagen_url, vendedor_id) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssdss", $nombre, $descripcion, $precio, $imagen_destino, $vendedor_id);
+            $stmt->execute();
 
             // Redirigir a cuenta.php con un mensaje de éxito
             $_SESSION['mensaje'] = "¡Genial! Tu producto ha sido subido correctamente. Puedes verlo en tu cuenta.";
